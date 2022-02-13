@@ -1,11 +1,11 @@
 import 'package:dashboard_camera_trap/ui/utils/dashboard_colors.dart';
-import 'package:dashboard_camera_trap/ui/widgets/avatar.dart';
+import 'package:dashboard_camera_trap/ui/shared/avatar.dart';
 import 'package:dashboard_camera_trap/ui/widgets/item_sidebar.dart';
-import 'package:dashboard_camera_trap/ui/widgets/logo.dart';
+import 'package:dashboard_camera_trap/ui/shared/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import 'separator_widget.dart';
+import '../shared/separator_widget.dart';
 
 class SidebarAdmin extends StatefulWidget {
   const SidebarAdmin({Key? key}) : super(key: key);
@@ -43,15 +43,9 @@ class _SidebarAdminState extends State<SidebarAdmin> {
     return Column(
       children: [
         ItemSidebar(
-          icon: Icons.home,
-          text: "Dashboard",
-          selected: true,
-          onClick: () => {},
-        ),
-        ItemSidebar(
           icon: Icons.list,
           text: "Lista",
-          selected: false,
+          selected: true,
           onClick: () => {},
         ),
       ],

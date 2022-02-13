@@ -1,3 +1,4 @@
+import 'package:dashboard_camera_trap/ui/shared/search_bar.dart';
 import 'package:flutter/material.dart';
 
 class ListPage extends StatelessWidget {
@@ -5,6 +6,8 @@ class ListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      children: const [SearchBarWidget()],
+    );
   }
 }

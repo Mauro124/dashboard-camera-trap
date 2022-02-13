@@ -1,3 +1,4 @@
+import 'package:dashboard_camera_trap/ui/core/theme.dart';
 import 'package:dashboard_camera_trap/ui/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -14,9 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Dashboard camera trap',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: themeData,
       home: const HomePage(),
       builder: (_, widget) => buildResponsiveMaterial(context, widget!),
     );

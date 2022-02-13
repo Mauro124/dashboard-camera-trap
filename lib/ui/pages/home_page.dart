@@ -1,3 +1,4 @@
+import 'package:dashboard_camera_trap/ui/pages/list_page.dart';
 import 'package:dashboard_camera_trap/ui/utils/dashboard_colors.dart';
 import 'package:dashboard_camera_trap/ui/widgets/page_size_not_allow.dart';
 import 'package:dashboard_camera_trap/ui/widgets/sidebar_admin.dart';
@@ -25,7 +26,7 @@ class HomePage extends StatelessWidget {
               ),
               padding: const EdgeInsets.all(10),
               margin: const EdgeInsets.all(30),
-              child: Container(),
+              child: const ListPage(),
             ),
           ),
         ],
