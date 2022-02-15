@@ -1,5 +1,6 @@
 import 'package:dashboard_camera_trap/domain/entities/report.dart';
 import 'package:dashboard_camera_trap/providers/general_providers.dart';
+import 'package:dashboard_camera_trap/ui/shared/separator_widget.dart';
 import 'package:dashboard_camera_trap/ui/widgets/button_load_image_video.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -41,7 +42,7 @@ class _FormWidgetState extends ConsumerState<FormWidget> {
                   _textEditingControllerCameraId,
                   canRequestFocus: true,
                 ),
-                const SizedBox(height: 30),
+                const SeparatorWidget(vertical: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,7 +54,7 @@ class _FormWidgetState extends ConsumerState<FormWidget> {
                       _textEditingControllerStartDate,
                       textInputType: TextInputType.datetime,
                     )),
-                    const SizedBox(width: 30),
+                    const SeparatorWidget(horizontal: 30),
                     Expanded(
                         child: _buildTextField(
                       "Hora de inicio",
@@ -63,7 +64,7 @@ class _FormWidgetState extends ConsumerState<FormWidget> {
                     )),
                   ],
                 ),
-                const SizedBox(height: 30),
+                const SeparatorWidget(vertical: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +76,7 @@ class _FormWidgetState extends ConsumerState<FormWidget> {
                       _textEditingControllerDetectionDate,
                       textInputType: TextInputType.datetime,
                     )),
-                    const SizedBox(width: 30),
+                    const SeparatorWidget(horizontal: 30),
                     Expanded(
                         child: _buildTextField(
                       "Hora de detección",
@@ -85,7 +86,7 @@ class _FormWidgetState extends ConsumerState<FormWidget> {
                     )),
                   ],
                 ),
-                const SizedBox(height: 30),
+                const SeparatorWidget(vertical: 30),
                 CheckboxListTile(
                   value: isVideo,
                   onChanged: (value) => {
@@ -95,7 +96,7 @@ class _FormWidgetState extends ConsumerState<FormWidget> {
                   },
                   title: const Text("¿Es video?"),
                 ),
-                const SizedBox(height: 30),
+                const SeparatorWidget(vertical: 30),
                 ButtonLoadImageVideo(isVideo: isVideo),
               ],
             ),

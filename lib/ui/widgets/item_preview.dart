@@ -1,27 +1,43 @@
 import 'package:dashboard_camera_trap/domain/entities/report.dart';
+import 'package:dashboard_camera_trap/providers/general_providers.dart';
+import 'package:dashboard_camera_trap/providers/report/report_states.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ReportPreview extends StatelessWidget {
+class ReportPreview extends ConsumerWidget {
   final Report? report;
 
   const ReportPreview({Key? key, this.report}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ReportState reportState = ref.watch(reportProvider);
+    Widget child = const Center(child: Text("No hay reporte seleccionado"));
+
+    if (reportState is LoadedReportState) {
+      child = _buildPreview(context, reportState.report);
+    } else if (reportState is ErrorReportState) {
+      child = Text(reportState.message);
+    } else if (reportState is LoadingReportState) {
+      child = const Center(child: CircularProgressIndicator());
+    }
+
     return Container(
       width: 350,
       padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-      child: Column(
+      child: child,
+    );
+  }
+
+  Widget _buildPreview(BuildContext context, Report report) => Column(
         children: [
           _buildImageOrVideo(),
           const SizedBox(height: 20),
-          _buildCameraID(context, "IMAG0002"),
+          _buildCameraID(context, "${report.camera}"),
           const SizedBox(height: 40),
-          _buildDetails(context),
+          _buildDetails(context, report),
         ],
-      ),
-    );
-  }
+      );
 
   Widget _buildImageOrVideo() => Container(
         constraints: const BoxConstraints.expand(height: 200),
@@ -31,19 +47,19 @@ class ReportPreview extends StatelessWidget {
   Widget _buildCameraID(BuildContext context, String cameraID) => Center(
       child: Text(cameraID, style: Theme.of(context).textTheme.headline5!.copyWith(fontWeight: FontWeight.bold)));
 
-  Widget _buildDetails(BuildContext context) => Column(
+  Widget _buildDetails(BuildContext context, Report report) => Column(
         children: [
           Row(
             children: [
-              _buildReportDetails(context, "Fecha de inicio", "20/10/2022"),
-              _buildReportDetails(context, "Hora de inicio", "10:00 hs"),
+              _buildReportDetails(context, "Fecha de inicio", "${report.startDate}"),
+              _buildReportDetails(context, "Hora de inicio", "${report.startDate}"),
             ],
           ),
           const SizedBox(height: 20),
           Row(
             children: [
-              _buildReportDetails(context, "Fecha de detección", "20/10/2022"),
-              _buildReportDetails(context, "Hora de detección", "10:00 hs"),
+              _buildReportDetails(context, "Fecha de detección", "${report.detectionDate}"),
+              _buildReportDetails(context, "Hora de detección", "${report.detectionTime}"),
             ],
           ),
         ],

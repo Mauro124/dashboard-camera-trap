@@ -24,7 +24,6 @@ class _TableWidgetState extends ConsumerState<TableWidget> {
   @override
   Widget build(BuildContext context) {
     ReportListState state = ref.watch(reportListProvider);
-    print("STATE: $state");
 
     if (state is LoadedReportListState) {
       List<DataRow> rows = _buildRows(state.reports);
@@ -53,6 +52,7 @@ class _TableWidgetState extends ConsumerState<TableWidget> {
           _buildDataColumn("Es foto", ColumnSize.S),
           _buildDataColumn("Es video", ColumnSize.S),
         ],
+        showCheckboxColumn: false,
         rows: rows,
       ),
     );
@@ -75,9 +75,15 @@ class _TableWidgetState extends ConsumerState<TableWidget> {
       cells.add(DataCell(Text("${report.detectionTime}")));
       cells.add(DataCell(Text("${report.isPhoto}")));
       cells.add(DataCell(Text("${report.isVideo}")));
-      rows.add(DataRow(cells: cells));
+      rows.add(DataRow(
+          cells: cells,
+          onSelectChanged: (value) {
+            _getReportById(report.id!);
+          }));
     }
 
     return rows;
   }
+
+  void _getReportById(String id) => ref.read(reportProvider.notifier).get(id);
 }
