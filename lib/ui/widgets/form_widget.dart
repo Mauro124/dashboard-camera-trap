@@ -166,7 +166,7 @@ class _FormWidgetState extends ConsumerState<FormWidget> {
         photo: isVideo ? "" : "photo",
         video: isVideo ? "video" : "",
       );
-      ref.read(addReportProvider.notifier).add(report);
+      ref.read(reportListProvider.notifier).add(report);
       _dismissDialog(context);
       return;
     }

@@ -14,15 +14,23 @@ class ReportRepositoryImplementation implements ReportsRepository {
   }
 
   @override
-  Report getReport(String id) {
-    // TODO: implement getReport
-    throw UnimplementedError();
+  Future<Either<Exception, Report>> getReport(String id) async {
+    try {
+      Report report = await _reportRemoteDataSources.getReport(id);
+      return Right(report);
+    } on ServerException catch (e) {
+      return Left(ServerException(e.statusCode));
+    }
   }
 
   @override
-  List<Report> getReports() {
-    // TODO: implement getReports
-    throw UnimplementedError();
+  Future<Either<Exception, List<Report>>> getReports() async {
+    try {
+      List<Report> reports = await _reportRemoteDataSources.getReports();
+      return Right(reports);
+    } on ServerException catch (e) {
+      return Left(ServerException(e.statusCode));
+    }
   }
 
   @override

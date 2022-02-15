@@ -18,7 +18,7 @@ class ItemSidebar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: selected ? Colors.green : Colors.white,
+        color: selected ? Colors.grey : Colors.white,
         border: Border.all(color: Colors.white),
         borderRadius: const BorderRadius.all(Radius.circular(16)),
       ),

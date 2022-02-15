@@ -3,8 +3,8 @@ import 'package:dashboard_camera_trap/core/errors/exceptions.dart';
 import 'package:dashboard_camera_trap/domain/entities/report.dart';
 
 abstract class ReportRemoteDataSources {
-  List<Report> getReports();
-  Report getReport(String id);
+  Future<List<Report>> getReports();
+  Future<Report> getReport(String id);
 
   /// Save a document of type report in firestore and return true if OK.
   ///
@@ -35,15 +35,29 @@ class ReportFirebaseDataSourcesImplementation implements ReportRemoteDataSources
   }
 
   @override
-  Report getReport(String id) {
-    // TODO: implement getReport
-    throw UnimplementedError();
+  Future<Report> getReport(String id) async {
+    try {
+      return await _firebaseFirestore
+          .collection("reports")
+          .doc(id)
+          .snapshots()
+          .map((doc) => Report.fromJson(doc.data()!))
+          .first;
+    } catch (ex) {
+      throw ServerException(500);
+    }
   }
 
   @override
-  List<Report> getReports() {
-    // TODO: implement getReports
-    throw UnimplementedError();
+  Future<List<Report>> getReports() async {
+    try {
+      var collectionReference = _firebaseFirestore.collection("reports");
+      var querySnapshot = await collectionReference.get();
+      var documents = querySnapshot.docs;
+      return documents.map((doc) => Report.fromJson(doc.data())).toList();
+    } catch (ex) {
+      throw ServerException(500);
+    }
   }
 
   @override
