@@ -1,4 +1,3 @@
-import 'package:dashboard_camera_trap/ui/utils/dashboard_colors.dart';
 import 'package:flutter/material.dart';
 
 class ItemSidebar extends StatelessWidget {
@@ -19,8 +18,8 @@ class ItemSidebar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: selected ? DashboardColors.aliceBlue : DashboardColors.white,
-        border: Border.all(color: DashboardColors.white),
+        color: selected ? Colors.green : Colors.white,
+        border: Border.all(color: Colors.white),
         borderRadius: const BorderRadius.all(Radius.circular(16)),
       ),
       margin: const EdgeInsets.symmetric(vertical: 10),
@@ -37,13 +36,13 @@ class ItemSidebar extends StatelessWidget {
             children: [
               Icon(
                 icon,
-                color: selected ? DashboardColors.black : DashboardColors.silverChalice,
+                color: selected ? Colors.white : Colors.black,
               ),
               Text(
                 text,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: selected ? DashboardColors.black : DashboardColors.silverChalice,
+                  color: selected ? Colors.white : Colors.black,
                 ),
               ),
             ],

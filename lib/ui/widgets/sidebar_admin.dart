@@ -1,4 +1,3 @@
-import 'package:dashboard_camera_trap/ui/utils/dashboard_colors.dart';
 import 'package:dashboard_camera_trap/ui/shared/avatar.dart';
 import 'package:dashboard_camera_trap/ui/widgets/item_sidebar.dart';
 import 'package:dashboard_camera_trap/ui/shared/logo.dart';
@@ -22,7 +21,7 @@ class _SidebarAdminState extends State<SidebarAdmin> {
 
   Widget _sidebar() => ResponsiveWrapper.of(context).isDesktop || ResponsiveWrapper.of(context).isTablet
       ? Container(
-          color: DashboardColors.transparent,
+          color: Colors.transparent,
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 24),
           height: double.infinity,
           width: 250,
