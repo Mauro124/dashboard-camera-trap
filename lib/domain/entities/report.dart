@@ -4,8 +4,8 @@ class Report {
   String? startDate;
   String? detectionDate;
   String? detectionTime;
-  String? isPhoto;
-  String? isVideo;
+  bool? isPhoto;
+  bool? isVideo;
   String? photo;
   String? video;
 

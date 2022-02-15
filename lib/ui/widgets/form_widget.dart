@@ -1,18 +1,24 @@
 import 'package:dashboard_camera_trap/domain/entities/report.dart';
+import 'package:dashboard_camera_trap/providers/general_providers.dart';
 import 'package:dashboard_camera_trap/ui/widgets/button_load_image_video.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:uuid/uuid.dart';
 
-class FormWidget extends StatefulWidget {
+class FormWidget extends ConsumerStatefulWidget {
   const FormWidget({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _FormWidgetState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _FormWidgetState();
 }
 
-class _FormWidgetState extends State<FormWidget> {
+class _FormWidgetState extends ConsumerState<FormWidget> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _textEditingControllerIDCamera = TextEditingController();
-  final TextEditingController _textEditingControllerDescription = TextEditingController();
+  final TextEditingController _textEditingControllerCameraId = TextEditingController();
+  final TextEditingController _textEditingControllerStartDate = TextEditingController();
+  final TextEditingController _textEditingControllerStartTime = TextEditingController();
+  final TextEditingController _textEditingControllerDetectionDate = TextEditingController();
+  final TextEditingController _textEditingControllerDetectionTime = TextEditingController();
   bool isVideo = false;
 
   @override
@@ -29,7 +35,12 @@ class _FormWidgetState extends State<FormWidget> {
               shrinkWrap: true,
               padding: const EdgeInsets.only(top: 30, bottom: 30),
               children: [
-                _buildTextField("ID Cámara", Icons.camera_alt, _textEditingControllerIDCamera, canRequestFocus: true),
+                _buildTextField(
+                  "ID Cámara",
+                  Icons.camera_alt,
+                  _textEditingControllerCameraId,
+                  canRequestFocus: true,
+                ),
                 const SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -39,7 +50,7 @@ class _FormWidgetState extends State<FormWidget> {
                         child: _buildTextField(
                       "Fecha de inicio",
                       Icons.date_range,
-                      _textEditingControllerDescription,
+                      _textEditingControllerStartDate,
                       textInputType: TextInputType.datetime,
                     )),
                     const SizedBox(width: 30),
@@ -47,7 +58,7 @@ class _FormWidgetState extends State<FormWidget> {
                         child: _buildTextField(
                       "Hora de inicio",
                       Icons.timelapse,
-                      _textEditingControllerDescription,
+                      _textEditingControllerStartTime,
                       textInputType: TextInputType.datetime,
                     )),
                   ],
@@ -61,7 +72,7 @@ class _FormWidgetState extends State<FormWidget> {
                         child: _buildTextField(
                       "Fecha de detección",
                       Icons.date_range,
-                      _textEditingControllerDescription,
+                      _textEditingControllerDetectionDate,
                       textInputType: TextInputType.datetime,
                     )),
                     const SizedBox(width: 30),
@@ -69,7 +80,7 @@ class _FormWidgetState extends State<FormWidget> {
                         child: _buildTextField(
                       "Hora de detección",
                       Icons.timelapse,
-                      _textEditingControllerDescription,
+                      _textEditingControllerDetectionTime,
                       textInputType: TextInputType.datetime,
                     )),
                   ],
@@ -102,14 +113,7 @@ class _FormWidgetState extends State<FormWidget> {
       controller: controller,
       keyboardType: textInputType,
       focusNode: FocusNode(canRequestFocus: canRequestFocus),
-      decoration: InputDecoration(
-        icon: Icon(icon),
-        labelText: hint,
-        border: const UnderlineInputBorder(),
-        enabledBorder: const UnderlineInputBorder(),
-        focusedBorder: const UnderlineInputBorder(),
-        errorBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.red)),
-      ),
+      decoration: InputDecoration(icon: Icon(icon), labelText: hint),
       validator: (value) {
         if (value!.isEmpty) {
           return 'Debes completar $hint';
@@ -136,7 +140,7 @@ class _FormWidgetState extends State<FormWidget> {
           ),
           const SizedBox(width: 20),
           ElevatedButton(
-            onPressed: () => _buttonSubmitAction(),
+            onPressed: () => _buttonSubmitAction(context, ref),
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Text(
@@ -148,12 +152,25 @@ class _FormWidgetState extends State<FormWidget> {
         ],
       );
 
-  void _buttonSubmitAction() {
+  void _buttonSubmitAction(BuildContext context, WidgetRef ref) {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      Report reportReport = Report();
-      // ref.read(formProvider.notifier).add(formReport);
+      Report report = Report(
+        id: const Uuid().v1(),
+        camera: _textEditingControllerCameraId.text,
+        startDate: _textEditingControllerStartDate.text,
+        detectionDate: _textEditingControllerDetectionDate.text,
+        detectionTime: _textEditingControllerDetectionTime.text,
+        isPhoto: !isVideo,
+        isVideo: isVideo,
+        photo: isVideo ? "" : "photo",
+        video: isVideo ? "video" : "",
+      );
+      ref.read(addReportProvider.notifier).add(report);
+      _dismissDialog(context);
       return;
     }
   }
+
+  void _dismissDialog(BuildContext context) => Navigator.of(context).pop();
 }

@@ -1,4 +1,5 @@
-import 'package:dashboard_camera_trap/ui/widgets/button_add_report.dart';
+import 'package:dashboard_camera_trap/ui/dialogs/add_item_dialog.dart';
+import 'package:dashboard_camera_trap/ui/utils/dialog_extension.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class _TableWidgetState extends State<TableWidget> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _buildTitle(context),
-            const ButtonAddReport(),
+            _buildAddReportButton(),
           ],
         ),
         const Divider(),
@@ -66,4 +67,15 @@ class _TableWidgetState extends State<TableWidget> {
         size: size,
         numeric: isNumeric,
       );
+
+  Widget _buildAddReportButton() => ElevatedButton.icon(
+        style: ButtonStyle(
+          padding: MaterialStateProperty.all(const EdgeInsets.all(20)),
+        ),
+        onPressed: () => _showDialog(context),
+        icon: const Icon(Icons.add),
+        label: const Text("AGREGAR REPORTE"),
+      );
+
+  void _showDialog(BuildContext context) => const AddReportDialog().show(context, true);
 }

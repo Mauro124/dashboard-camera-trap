@@ -268,13 +268,13 @@ final ThemeData themeData = ThemeData(
     floatingLabelBehavior: FloatingLabelBehavior.auto,
     errorBorder: UnderlineInputBorder(
       borderSide: BorderSide(
-        color: Color(0xff000000),
+        color: Colors.red,
         width: 1,
         style: BorderStyle.solid,
       ),
       borderRadius: BorderRadius.all(Radius.circular(4.0)),
     ),
-    focusedBorder: InputBorder.none,
+    focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
     focusedErrorBorder: InputBorder.none,
     disabledBorder: UnderlineInputBorder(
       borderSide: BorderSide(
@@ -284,8 +284,8 @@ final ThemeData themeData = ThemeData(
       ),
       borderRadius: BorderRadius.all(Radius.circular(4.0)),
     ),
-    enabledBorder: InputBorder.none,
-    border: InputBorder.none,
+    enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+    border: UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
   ),
   iconTheme: const IconThemeData(
     color: Color(0xdd000000),
