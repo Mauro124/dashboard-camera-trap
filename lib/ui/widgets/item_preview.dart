@@ -1,10 +1,10 @@
 import 'package:dashboard_camera_trap/domain/entities/report.dart';
 import 'package:flutter/material.dart';
 
-class ItemPreview extends StatelessWidget {
+class ReportPreview extends StatelessWidget {
   final Report? report;
 
-  const ItemPreview({Key? key, this.report}) : super(key: key);
+  const ReportPreview({Key? key, this.report}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,21 +35,21 @@ class ItemPreview extends StatelessWidget {
         children: [
           Row(
             children: [
-              _buildItemDetails(context, "Fecha de inicio", "20/10/2022"),
-              _buildItemDetails(context, "Hora de inicio", "10:00 hs"),
+              _buildReportDetails(context, "Fecha de inicio", "20/10/2022"),
+              _buildReportDetails(context, "Hora de inicio", "10:00 hs"),
             ],
           ),
           const SizedBox(height: 20),
           Row(
             children: [
-              _buildItemDetails(context, "Fecha de detección", "20/10/2022"),
-              _buildItemDetails(context, "Hora de detección", "10:00 hs"),
+              _buildReportDetails(context, "Fecha de detección", "20/10/2022"),
+              _buildReportDetails(context, "Hora de detección", "10:00 hs"),
             ],
           ),
         ],
       );
 
-  Widget _buildItemDetails(BuildContext context, String title, String detail) => Expanded(
+  Widget _buildReportDetails(BuildContext context, String title, String detail) => Expanded(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,

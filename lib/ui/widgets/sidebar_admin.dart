@@ -32,13 +32,13 @@ class _SidebarAdminState extends State<SidebarAdmin> {
               const LogoWidget(),
               const SeparatorWidget(vertical: 20),
               const AvatarWidget(),
-              _sidebarItems(),
+              _sidebarReports(),
             ],
           ),
         )
       : Container();
 
-  Widget _sidebarItems() {
+  Widget _sidebarReports() {
     return Column(
       children: [
         ItemSidebar(
@@ -51,7 +51,7 @@ class _SidebarAdminState extends State<SidebarAdmin> {
     );
   }
 
-  void selectItemSidebar(String route) {
+  void selectReportSidebar(String route) {
     // context.vRouter.to(route);
   }
 }

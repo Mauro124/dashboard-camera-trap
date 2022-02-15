@@ -1,4 +1,4 @@
-import 'package:dashboard_camera_trap/ui/widgets/button_add_item.dart';
+import 'package:dashboard_camera_trap/ui/widgets/button_add_report.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +19,7 @@ class _TableWidgetState extends State<TableWidget> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _buildTitle(context),
-            const ButtonAddItem(),
+            const ButtonAddReport(),
           ],
         ),
         const Divider(),

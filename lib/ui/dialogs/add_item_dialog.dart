@@ -1,8 +1,8 @@
 import 'package:dashboard_camera_trap/ui/widgets/form_widget.dart';
 import 'package:flutter/material.dart';
 
-class AddItemDialog extends StatelessWidget {
-  const AddItemDialog({Key? key}) : super(key: key);
+class AddReportDialog extends StatelessWidget {
+  const AddReportDialog({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class AddItemDialog extends StatelessWidget {
   }
 
   Widget _buildTitle(BuildContext context) => Text(
-        "AGREGAR ITEM",
+        "AGREGAR REPORTE",
         style: Theme.of(context).textTheme.headline5,
       );
 }

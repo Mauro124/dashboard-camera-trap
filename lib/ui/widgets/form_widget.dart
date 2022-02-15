@@ -151,8 +151,8 @@ class _FormWidgetState extends State<FormWidget> {
   void _buttonSubmitAction() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      Report reportItem = Report();
-      // ref.read(formProvider.notifier).add(formItem);
+      Report reportReport = Report();
+      // ref.read(formProvider.notifier).add(formReport);
       return;
     }
   }

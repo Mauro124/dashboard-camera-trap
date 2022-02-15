@@ -15,7 +15,7 @@ class ButtonLoadImageVideo extends StatelessWidget {
         child: GestureDetector(
           onTap: () {},
           child: Container(
-            decoration: BoxDecoration(color: Colors.grey[100]),
+            decoration: BoxDecoration(color: Colors.grey[200]),
             padding: const EdgeInsets.all(50),
             child: Column(
               children: [

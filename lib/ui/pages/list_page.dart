@@ -20,7 +20,7 @@ class ListPage extends StatelessWidget {
             ],
           ),
         ),
-        const ItemPreview(),
+        const ReportPreview(),
       ],
     );
   }
