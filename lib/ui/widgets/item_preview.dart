@@ -31,11 +31,18 @@ class ReportPreview extends ConsumerWidget {
 
   Widget _buildPreview(BuildContext context, Report report) => Column(
         children: [
-          _buildImageOrVideo(),
-          const SizedBox(height: 20),
-          _buildCameraID(context, "${report.camera}"),
-          const SizedBox(height: 40),
-          _buildDetails(context, report),
+          Expanded(
+            child: Column(
+              children: [
+                _buildImageOrVideo(),
+                const SizedBox(height: 20),
+                _buildCameraID(context, "${report.camera}"),
+                const SizedBox(height: 40),
+                _buildDetails(context, report),
+              ],
+            ),
+          ),
+          _buildDeleteButton(),
         ],
       );
 
@@ -74,5 +81,12 @@ class ReportPreview extends ConsumerWidget {
             Text(detail, style: Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 18)),
           ],
         ),
+      );
+
+  Widget _buildDeleteButton() => ElevatedButton.icon(
+        icon: const Icon(Icons.delete),
+        label: const Text("Eliminar reporte"),
+        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.red)),
+        onPressed: () {},
       );
 }

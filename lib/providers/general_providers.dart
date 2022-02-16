@@ -15,5 +15,4 @@ final reportListProvider = StateNotifierProvider<ReportListNotifier, ReportListS
 
 final reportProvider = StateNotifierProvider<ReportNotifier, ReportState>((ref) => ReportNotifier(
       getReport: serviceLocator<GetReport>(),
-      addReport: serviceLocator<AddReport>(),
     ));

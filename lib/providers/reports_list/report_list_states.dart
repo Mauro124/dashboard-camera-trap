@@ -6,8 +6,6 @@ class InitialReportListState implements ReportListState {}
 
 class LoadingReportListState implements ReportListState {}
 
-class AddedReportListState implements ReportListState {}
-
 class LoadedReportListState implements ReportListState {
   final List<Report> reports;
 

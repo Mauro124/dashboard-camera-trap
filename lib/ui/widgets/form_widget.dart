@@ -23,6 +23,15 @@ class _FormWidgetState extends ConsumerState<FormWidget> {
   bool isVideo = false;
 
   @override
+  void initState() {
+    super.initState();
+    _textEditingControllerStartDate.text = getYear();
+    _textEditingControllerDetectionDate.text = getYear();
+  }
+
+  String getYear() => "/${DateTime.now().year}";
+
+  @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
@@ -49,7 +58,7 @@ class _FormWidgetState extends ConsumerState<FormWidget> {
                   children: [
                     Expanded(
                         child: _buildTextField(
-                      "Fecha de inicio",
+                      "Fecha de inicio (dd/mm/yyyy)",
                       Icons.date_range,
                       _textEditingControllerStartDate,
                       textInputType: TextInputType.datetime,
@@ -71,7 +80,7 @@ class _FormWidgetState extends ConsumerState<FormWidget> {
                   children: [
                     Expanded(
                         child: _buildTextField(
-                      "Fecha de detección",
+                      "Fecha de detección (dd/mm/yyyy)",
                       Icons.date_range,
                       _textEditingControllerDetectionDate,
                       textInputType: TextInputType.datetime,

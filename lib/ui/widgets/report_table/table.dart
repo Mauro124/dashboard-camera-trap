@@ -1,6 +1,7 @@
 import 'package:dashboard_camera_trap/domain/entities/report.dart';
 import 'package:dashboard_camera_trap/providers/general_providers.dart';
 import 'package:dashboard_camera_trap/providers/reports_list/report_list_states.dart';
+import 'package:dashboard_camera_trap/ui/widgets/report_table/reports_datasource.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,9 +17,7 @@ class _TableWidgetState extends ConsumerState<TableWidget> {
   @override
   void initState() {
     super.initState();
-    Future.delayed((Duration.zero), () async {
-      await ref.read(reportListProvider.notifier).getAll();
-    });
+    Future.delayed((Duration.zero), () async => await ref.read(reportListProvider.notifier).getAll());
   }
 
   @override
@@ -26,8 +25,7 @@ class _TableWidgetState extends ConsumerState<TableWidget> {
     ReportListState state = ref.watch(reportListProvider);
 
     if (state is LoadedReportListState) {
-      List<DataRow> rows = _buildRows(state.reports);
-      return _buildTable(rows);
+      return _buildTable(state.reports);
     } else if (state is LoadingReportListState) {
       return const Center(child: CircularProgressIndicator());
     } else if (state is ErrorReportListState) {
@@ -37,53 +35,36 @@ class _TableWidgetState extends ConsumerState<TableWidget> {
     return const Center(child: CircularProgressIndicator());
   }
 
-  Widget _buildTable(List<DataRow> rows) {
+  Widget _buildTable(List<Report> reports) {
     return Expanded(
-      child: DataTable2(
+      child: PaginatedDataTable2(
+        source: ReportsDataSource(reports: reports, onView: (Report report) => _getReportById(report.id!)),
+        showFirstLastButtons: false,
+        rowsPerPage: reports.length,
+        sortColumnIndex: 1,
         columnSpacing: 12,
-        horizontalMargin: 12,
-        minWidth: 400,
-        headingTextStyle: const TextStyle(fontWeight: FontWeight.bold),
-        columns: [
-          _buildDataColumn("Cámara"),
-          _buildDataColumn("Fecha de inicio"),
-          _buildDataColumn("Fecha de detección"),
-          _buildDataColumn("Hora de detección"),
-          _buildDataColumn("Es foto", ColumnSize.S),
-          _buildDataColumn("Es video", ColumnSize.S),
-        ],
+        columns: _buildColumns,
         showCheckboxColumn: false,
-        rows: rows,
+        wrapInCard: false,
       ),
     );
   }
+
+  List<DataColumn2> get _buildColumns => [
+        _buildDataColumn("Cámara"),
+        _buildDataColumn("Fecha de inicio"),
+        _buildDataColumn("Fecha de detección"),
+        _buildDataColumn("Hora de detección"),
+        _buildDataColumn("Es foto", ColumnSize.S),
+        _buildDataColumn("Es video", ColumnSize.S),
+        _buildDataColumn("", ColumnSize.S),
+      ];
 
   DataColumn2 _buildDataColumn(String text, [ColumnSize size = ColumnSize.M, bool isNumeric = false]) => DataColumn2(
         label: Text(text),
         size: size,
         numeric: isNumeric,
       );
-
-  List<DataRow> _buildRows(List<Report> reports) {
-    List<DataRow> rows = [];
-    List<DataCell> cells = [];
-
-    for (Report report in reports) {
-      cells.add(DataCell(Text("${report.camera}")));
-      cells.add(DataCell(Text("${report.startDate}")));
-      cells.add(DataCell(Text("${report.detectionDate}")));
-      cells.add(DataCell(Text("${report.detectionTime}")));
-      cells.add(DataCell(Text("${report.isPhoto}")));
-      cells.add(DataCell(Text("${report.isVideo}")));
-      rows.add(DataRow(
-          cells: cells,
-          onSelectChanged: (value) {
-            _getReportById(report.id!);
-          }));
-    }
-
-    return rows;
-  }
 
   void _getReportById(String id) => ref.read(reportProvider.notifier).get(id);
 }

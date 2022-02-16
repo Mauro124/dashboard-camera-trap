@@ -8,7 +8,9 @@ class LogoWidget extends StatelessWidget {
     return Container(
       height: 100,
       width: double.infinity,
-      decoration: const BoxDecoration(color: Colors.green, borderRadius: BorderRadius.all(Radius.circular(8))),
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+          image: DecorationImage(image: AssetImage("images/camera_trap_logo.png"))),
     );
   }
 }

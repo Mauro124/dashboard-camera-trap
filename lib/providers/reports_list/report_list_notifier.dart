@@ -14,14 +14,18 @@ class ReportListNotifier extends StateNotifier<ReportListState> {
   Future<void> add(Report report) async {
     state = LoadingReportListState();
     Either<Exception, bool> response = await addReport.call(report: report);
-    response.fold((failure) => state = ErrorReportListState("Error al agregar el reporte"),
-        (responseOk) => state = AddedReportListState());
+    response.fold(
+      (failure) => state = ErrorReportListState("Error al agregar el reporte"),
+      (responseOk) => getAll(),
+    );
   }
 
   Future<void> getAll() async {
     state = LoadingReportListState();
     Either<Exception, List<Report>> response = await getReports.call();
-    response.fold((failure) => state = ErrorReportListState("Error al cargar la lista"),
-        (reports) => state = LoadedReportListState(reports));
+    response.fold(
+      (failure) => state = ErrorReportListState("Error al cargar la lista"),
+      (reports) => state = LoadedReportListState(reports),
+    );
   }
 }

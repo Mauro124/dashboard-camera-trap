@@ -15,7 +15,6 @@ Future<void> init() async {
   serviceLocator.registerFactory(
     () => ReportNotifier(
       getReport: serviceLocator(),
-      addReport: serviceLocator(),
     ),
   );
 
