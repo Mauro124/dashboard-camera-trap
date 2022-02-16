@@ -2,6 +2,7 @@ import 'package:dashboard_camera_trap/domain/entities/report.dart';
 import 'package:dashboard_camera_trap/providers/general_providers.dart';
 import 'package:dashboard_camera_trap/ui/shared/separator_widget.dart';
 import 'package:dashboard_camera_trap/ui/widgets/button_load_image_video.dart';
+import 'package:dashboard_camera_trap/ui/widgets/video_image_radio_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
@@ -96,15 +97,10 @@ class _FormWidgetState extends ConsumerState<FormWidget> {
                   ],
                 ),
                 const SeparatorWidget(vertical: 30),
-                CheckboxListTile(
-                  value: isVideo,
-                  onChanged: (value) => {
-                    setState(() {
-                      isVideo = value!;
-                    })
-                  },
-                  title: const Text("¿Es video?"),
-                ),
+                VideoImageRadioButton(
+                    isVideo: (value) => setState(() {
+                          isVideo = value;
+                        })),
                 const SeparatorWidget(vertical: 30),
                 ButtonLoadImageVideo(isVideo: isVideo),
               ],

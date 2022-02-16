@@ -18,8 +18,7 @@ class ItemSidebar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: selected ? Colors.grey : Colors.white,
-        border: Border.all(color: Colors.white),
+        color: selected ? Colors.grey[200] : Colors.white,
         borderRadius: const BorderRadius.all(Radius.circular(16)),
       ),
       margin: const EdgeInsets.symmetric(vertical: 10),
@@ -34,16 +33,11 @@ class ItemSidebar extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                icon,
-                color: selected ? Colors.white : Colors.black,
-              ),
+              Icon(icon, color: Colors.black),
               Text(
                 text,
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: selected ? Colors.white : Colors.black,
-                ),
+                style: const TextStyle(color: Colors.black),
               ),
             ],
           ),
