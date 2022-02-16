@@ -7,7 +7,7 @@ class GetReports {
 
   GetReports({required this.reportsRepository});
 
-  Future<Either<Exception, List<Report>>> getReports() {
+  Future<Either<Exception, List<Report>>> call() {
     return reportsRepository.getReports();
   }
 }

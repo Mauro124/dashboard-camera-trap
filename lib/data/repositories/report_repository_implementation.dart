@@ -5,7 +5,9 @@ import 'package:dashboard_camera_trap/domain/entities/report.dart';
 import 'package:dashboard_camera_trap/infrastructure/repositories/reports_repository.dart';
 
 class ReportRepositoryImplementation implements ReportsRepository {
-  final ReportRemoteDataSources _reportRemoteDataSources = ReportFirebaseDataSourcesImplementation();
+  final ReportRemoteDataSources reportRemoteDataSources;
+
+  ReportRepositoryImplementation({required this.reportRemoteDataSources});
 
   @override
   deleteReportById(String id) {
@@ -16,7 +18,7 @@ class ReportRepositoryImplementation implements ReportsRepository {
   @override
   Future<Either<Exception, Report>> getReport(String id) async {
     try {
-      Report report = await _reportRemoteDataSources.getReport(id);
+      Report report = await reportRemoteDataSources.getReport(id);
       return Right(report);
     } on ServerException catch (e) {
       return Left(ServerException(e.statusCode));
@@ -26,7 +28,7 @@ class ReportRepositoryImplementation implements ReportsRepository {
   @override
   Future<Either<Exception, List<Report>>> getReports() async {
     try {
-      List<Report> reports = await _reportRemoteDataSources.getReports();
+      List<Report> reports = await reportRemoteDataSources.getReports();
       return Right(reports);
     } on ServerException catch (e) {
       return Left(ServerException(e.statusCode));
@@ -36,7 +38,7 @@ class ReportRepositoryImplementation implements ReportsRepository {
   @override
   Future<Either<Exception, bool>> addReport(Report report) async {
     try {
-      bool response = _reportRemoteDataSources.addReport(report);
+      bool response = reportRemoteDataSources.addReport(report);
       return Right(response);
     } on ServerException catch (e) {
       return Left(ServerException(e.statusCode));
