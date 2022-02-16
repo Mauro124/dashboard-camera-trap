@@ -10,13 +10,7 @@ class ReportRepositoryImplementation implements ReportsRepository {
   ReportRepositoryImplementation({required this.reportRemoteDataSources});
 
   @override
-  deleteReportById(String id) {
-    // TODO: implement deleteReportById
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<Exception, Report>> getReport(String id) async {
+  Future<Either<Exception, Report>> getReportById(String id) async {
     try {
       Report report = await reportRemoteDataSources.getReport(id);
       return Right(report);
@@ -36,9 +30,9 @@ class ReportRepositoryImplementation implements ReportsRepository {
   }
 
   @override
-  Future<Either<Exception, bool>> addReport(Report report) async {
+  Future<Either<Exception, void>> addReport(Report report) async {
     try {
-      bool response = reportRemoteDataSources.addReport(report);
+      final response = await reportRemoteDataSources.addReport(report);
       return Right(response);
     } on ServerException catch (e) {
       return Left(ServerException(e.statusCode));
@@ -49,5 +43,15 @@ class ReportRepositoryImplementation implements ReportsRepository {
   updateReport(Report report) {
     // TODO: implement updateReport
     throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Exception, void>> deleteReportById(String id) async {
+    try {
+      var response = await reportRemoteDataSources.deleteReportById(id);
+      return Right(response);
+    } on ServerException catch (e) {
+      return Left(ServerException(e.statusCode));
+    }
   }
 }

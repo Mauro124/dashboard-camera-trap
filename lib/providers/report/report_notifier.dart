@@ -9,6 +9,8 @@ class ReportNotifier extends StateNotifier<ReportState> {
 
   ReportNotifier({required this.getReport}) : super(InitialReportState());
 
+  void setInitialState() => state = InitialReportState();
+
   Future<void> get(String id) async {
     state = LoadingReportState();
     Either<Exception, Report> response = await getReport.call(id);

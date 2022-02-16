@@ -8,6 +8,6 @@ class GetReport {
   GetReport({required this.reportsRepository});
 
   Future<Either<Exception, Report>> call(String id) {
-    return reportsRepository.getReport(id);
+    return reportsRepository.getReportById(id);
   }
 }

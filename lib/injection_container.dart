@@ -1,6 +1,7 @@
 import 'package:dashboard_camera_trap/data/data_sources/report_remote_data_sources.dart';
 import 'package:dashboard_camera_trap/data/repositories/report_repository_implementation.dart';
 import 'package:dashboard_camera_trap/domain/use_cases/reports/add_report.dart';
+import 'package:dashboard_camera_trap/domain/use_cases/reports/delete_report.dart';
 import 'package:dashboard_camera_trap/domain/use_cases/reports/get_report.dart';
 import 'package:dashboard_camera_trap/domain/use_cases/reports/get_reports.dart';
 import 'package:dashboard_camera_trap/infrastructure/repositories/reports_repository.dart';
@@ -22,6 +23,7 @@ Future<void> init() async {
     () => ReportListNotifier(
       getReports: serviceLocator(),
       addReport: serviceLocator(),
+      deleteReport: serviceLocator(),
     ),
   );
 
@@ -34,6 +36,9 @@ Future<void> init() async {
   );
   serviceLocator.registerLazySingleton(
     () => GetReports(reportsRepository: serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton(
+    () => DeleteReport(reportsRepository: serviceLocator()),
   );
 
   //Repositories

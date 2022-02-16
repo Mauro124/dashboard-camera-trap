@@ -15,7 +15,7 @@ class ReportPreview extends ConsumerWidget {
     Widget child = const Center(child: Text("No hay reporte seleccionado"));
 
     if (reportState is LoadedReportState) {
-      child = _buildPreview(context, reportState.report);
+      child = _buildPreview(context, ref, reportState.report);
     } else if (reportState is ErrorReportState) {
       child = Text(reportState.message);
     } else if (reportState is LoadingReportState) {
@@ -29,7 +29,7 @@ class ReportPreview extends ConsumerWidget {
     );
   }
 
-  Widget _buildPreview(BuildContext context, Report report) => Column(
+  Widget _buildPreview(BuildContext context, WidgetRef ref, Report report) => Column(
         children: [
           Expanded(
             child: Column(
@@ -42,7 +42,7 @@ class ReportPreview extends ConsumerWidget {
               ],
             ),
           ),
-          _buildDeleteButton(),
+          _buildDeleteButton(ref, report.id!),
         ],
       );
 
@@ -83,10 +83,15 @@ class ReportPreview extends ConsumerWidget {
         ),
       );
 
-  Widget _buildDeleteButton() => ElevatedButton.icon(
+  Widget _buildDeleteButton(WidgetRef ref, String reportId) => ElevatedButton.icon(
         icon: const Icon(Icons.delete),
         label: const Text("Eliminar reporte"),
         style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.red)),
-        onPressed: () {},
+        onPressed: () => _deleteReport(ref, reportId),
       );
+
+  void _deleteReport(WidgetRef ref, String id) {
+    ref.read(reportProvider.notifier).setInitialState();
+    ref.read(reportListProvider.notifier).delete(id);
+  }
 }

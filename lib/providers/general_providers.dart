@@ -1,4 +1,5 @@
 import 'package:dashboard_camera_trap/domain/use_cases/reports/add_report.dart';
+import 'package:dashboard_camera_trap/domain/use_cases/reports/delete_report.dart';
 import 'package:dashboard_camera_trap/domain/use_cases/reports/get_report.dart';
 import 'package:dashboard_camera_trap/domain/use_cases/reports/get_reports.dart';
 import 'package:dashboard_camera_trap/injection_container.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final reportListProvider = StateNotifierProvider<ReportListNotifier, ReportListState>((ref) => ReportListNotifier(
       getReports: serviceLocator<GetReports>(),
       addReport: serviceLocator<AddReport>(),
+      deleteReport: serviceLocator<DeleteReport>(),
     ));
 
 final reportProvider = StateNotifierProvider<ReportNotifier, ReportState>((ref) => ReportNotifier(

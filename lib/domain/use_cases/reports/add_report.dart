@@ -7,5 +7,5 @@ class AddReport {
 
   AddReport({required this.reportsRepository});
 
-  Future<Either<Exception, bool>> call({required Report report}) async => await reportsRepository.addReport(report);
+  Future<Either<Exception, void>> call({required Report report}) async => await reportsRepository.addReport(report);
 }
