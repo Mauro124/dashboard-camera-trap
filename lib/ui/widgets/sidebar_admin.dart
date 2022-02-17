@@ -1,4 +1,5 @@
 import 'package:dashboard_camera_trap/ui/shared/avatar.dart';
+import 'package:dashboard_camera_trap/ui/shared/user_information.dart';
 import 'package:dashboard_camera_trap/ui/widgets/item_sidebar.dart';
 import 'package:dashboard_camera_trap/ui/shared/logo.dart';
 import 'package:flutter/material.dart';
@@ -26,13 +27,20 @@ class _SidebarAdminState extends State<SidebarAdmin> {
           height: double.infinity,
           width: 250,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const LogoWidget(),
-              const SeparatorWidget(vertical: 20),
-              const AvatarWidget(),
-              _sidebarReports(),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const LogoWidget(),
+                    const SeparatorWidget(vertical: 20),
+                    const AvatarWidget(),
+                    _sidebarReports(),
+                  ],
+                ),
+              ),
+              const UserInformation(),
             ],
           ),
         )
