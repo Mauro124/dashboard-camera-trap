@@ -1,3 +1,4 @@
+import 'package:dashboard_camera_trap/core/router/routes_name.dart';
 import 'package:dashboard_camera_trap/domain/entities/user.dart';
 import 'package:dashboard_camera_trap/providers/general_providers.dart';
 import 'package:dashboard_camera_trap/ui/shared/logo.dart';
@@ -27,6 +28,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       GoogleSignInAccount? account = await _googleSignIn.signIn();
       User user = User(id: account!.id, name: account.displayName, email: account.email, photo: account.photoUrl);
       ref.read(userProvider.notifier).saveCurrentUser(user);
+      Navigator.pushNamed(context, RoutesName.HOME_PAGE);
     } catch (error) {
       print(error);
     }

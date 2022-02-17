@@ -1,4 +1,5 @@
-import 'package:dashboard_camera_trap/ui/pages/login_page.dart';
+import 'package:dashboard_camera_trap/core/router/route_generator.dart';
+import 'package:dashboard_camera_trap/core/router/routes_name.dart';
 import 'package:dashboard_camera_trap/ui/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Dashboard camera trap',
       theme: themeData,
-      home: LoginPage(),
+      onGenerateRoute: RouteGenerator.generateRoute,
+      initialRoute: RoutesName.LOGIN_PAGE,
       builder: (_, widget) => buildResponsiveMaterial(context, widget!),
     );
   }
