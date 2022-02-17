@@ -3,3 +3,9 @@ class ServerException implements Exception {
 
   ServerException(this.statusCode);
 }
+
+class LocalStorageException implements Exception {
+  final String message;
+
+  LocalStorageException(this.message);
+}

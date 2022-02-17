@@ -12,6 +12,8 @@ class LoadedUserState implements UserState {
   LoadedUserState(this.user);
 }
 
+class EmptyUser implements UserState {}
+
 class ErrorUserState implements UserState {
   final String message;
 

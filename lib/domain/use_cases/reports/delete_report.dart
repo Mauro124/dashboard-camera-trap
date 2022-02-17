@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:dashboard_camera_trap/infrastructure/repositories/reports_repository.dart';
+import 'package:dashboard_camera_trap/domain/repositories/reports_repository.dart';
 
 class DeleteReport {
   final ReportsRepository reportsRepository;

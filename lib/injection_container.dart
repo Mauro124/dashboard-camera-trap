@@ -6,9 +6,10 @@ import 'package:dashboard_camera_trap/domain/use_cases/reports/add_report.dart';
 import 'package:dashboard_camera_trap/domain/use_cases/reports/delete_report.dart';
 import 'package:dashboard_camera_trap/domain/use_cases/reports/get_report.dart';
 import 'package:dashboard_camera_trap/domain/use_cases/reports/get_reports.dart';
+import 'package:dashboard_camera_trap/domain/use_cases/users/get_current_user.dart';
 import 'package:dashboard_camera_trap/domain/use_cases/users/save_current_user.dart';
-import 'package:dashboard_camera_trap/infrastructure/repositories/reports_repository.dart';
-import 'package:dashboard_camera_trap/infrastructure/repositories/user_repository.dart';
+import 'package:dashboard_camera_trap/domain/repositories/reports_repository.dart';
+import 'package:dashboard_camera_trap/domain/repositories/user_repository.dart';
 import 'package:dashboard_camera_trap/providers/report/report_notifier.dart';
 import 'package:dashboard_camera_trap/providers/reports_list/report_list_notifier.dart';
 import 'package:dashboard_camera_trap/providers/user/user_notifier.dart';
@@ -35,6 +36,7 @@ Future<void> init() async {
   serviceLocator.registerFactory(
     () => UserNotifier(
       saveCurrentUser: serviceLocator(),
+      getCurrentUser: serviceLocator(),
     ),
   );
 
@@ -53,6 +55,9 @@ Future<void> init() async {
   );
   serviceLocator.registerLazySingleton(
     () => SaveCurrentUser(userRepository: serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton(
+    () => GetCurrentUser(userRepository: serviceLocator()),
   );
 
   //Repositories
