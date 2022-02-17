@@ -1,5 +1,5 @@
-import 'package:dashboard_camera_trap/ui/core/theme.dart';
-import 'package:dashboard_camera_trap/ui/pages/home_page.dart';
+import 'package:dashboard_camera_trap/ui/pages/login_page.dart';
+import 'package:dashboard_camera_trap/ui/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Dashboard camera trap',
       theme: themeData,
-      home: const HomePage(),
+      home: LoginPage(),
       builder: (_, widget) => buildResponsiveMaterial(context, widget!),
     );
   }

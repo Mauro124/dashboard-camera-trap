@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dashboard_camera_trap/core/errors/exceptions.dart';
-import 'package:dashboard_camera_trap/data/data_sources/report_remote_data_sources.dart';
+import 'package:dashboard_camera_trap/data/data_sources/report/report_remote_data_sources.dart';
 import 'package:dashboard_camera_trap/domain/entities/report.dart';
 import 'package:dashboard_camera_trap/infrastructure/repositories/reports_repository.dart';
 

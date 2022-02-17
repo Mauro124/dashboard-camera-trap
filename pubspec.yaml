@@ -37,7 +37,10 @@ dependencies:
     sdk: flutter
   flutter_riverpod: ^1.0.3
   get_it: ^7.2.0
+  google_sign_in: ^5.2.3
+  googleapis: ^8.0.0
   image_picker_web: ^2.1.0
+  localstorage: ^4.0.0+1
   responsive_framework: ^0.1.7
   uuid: ^3.0.5
 
