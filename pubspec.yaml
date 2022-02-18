@@ -40,6 +40,7 @@ dependencies:
   google_sign_in: ^5.2.3
   googleapis: ^8.0.0
   image_picker_web: ^2.1.0
+  logger: ^1.1.0
   responsive_framework: ^0.1.7
   shared_preferences: ^2.0.13
   uuid: ^3.0.5

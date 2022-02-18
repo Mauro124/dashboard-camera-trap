@@ -2,6 +2,7 @@ import 'package:dashboard_camera_trap/domain/use_cases/reports/add_report.dart';
 import 'package:dashboard_camera_trap/domain/use_cases/reports/delete_report.dart';
 import 'package:dashboard_camera_trap/domain/use_cases/reports/get_report.dart';
 import 'package:dashboard_camera_trap/domain/use_cases/reports/get_reports.dart';
+import 'package:dashboard_camera_trap/domain/use_cases/users/clear_current_user.dart';
 import 'package:dashboard_camera_trap/domain/use_cases/users/get_current_user.dart';
 import 'package:dashboard_camera_trap/domain/use_cases/users/save_current_user.dart';
 import 'package:dashboard_camera_trap/injection_container.dart';
@@ -26,4 +27,5 @@ final reportProvider = StateNotifierProvider<ReportNotifier, ReportState>((ref) 
 final userProvider = StateNotifierProvider<UserNotifier, UserState>((ref) => UserNotifier(
       saveCurrentUser: serviceLocator<SaveCurrentUser>(),
       getCurrentUser: serviceLocator<GetCurrentUser>(),
+      clearCurrentUser: serviceLocator<ClearCurrentUser>(),
     ));

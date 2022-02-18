@@ -5,8 +5,8 @@ import 'package:dashboard_camera_trap/ui/widgets/item_preview.dart';
 import 'package:dashboard_camera_trap/ui/widgets/report_table/table.dart';
 import 'package:flutter/material.dart';
 
-class ListPage extends StatelessWidget {
-  const ListPage({Key? key}) : super(key: key);
+class ReportsPage extends StatelessWidget {
+  const ReportsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

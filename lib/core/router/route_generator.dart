@@ -1,5 +1,5 @@
 import 'package:dashboard_camera_trap/core/router/routes_name.dart';
-import 'package:dashboard_camera_trap/ui/pages/home_page.dart';
+import 'package:dashboard_camera_trap/ui/layout/home_layout.dart';
 import 'package:dashboard_camera_trap/ui/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +9,7 @@ class RouteGenerator {
       case RoutesName.LOGIN_PAGE:
         return _GeneratePageRoute(widget: const LoginPage(), routeName: settings.name!);
       case RoutesName.HOME_PAGE:
-        return _GeneratePageRoute(widget: const HomePage(), routeName: settings.name!);
+        return _GeneratePageRoute(widget: const HomeLayout(), routeName: settings.name!);
       default:
         return _GeneratePageRoute(widget: const LoginPage(), routeName: settings.name!);
     }

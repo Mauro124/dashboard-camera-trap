@@ -19,11 +19,11 @@ class ItemSidebar extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: selected ? Colors.grey[200] : Colors.white,
-        borderRadius: const BorderRadius.all(Radius.circular(16)),
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
       ),
       margin: const EdgeInsets.symmetric(vertical: 10),
       child: InkWell(
-        borderRadius: const BorderRadius.all(Radius.circular(16)),
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
         onTap: () => onClick(),
         child: Container(
           width: double.infinity,

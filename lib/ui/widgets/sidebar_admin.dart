@@ -27,11 +27,10 @@ class _SidebarAdminState extends State<SidebarAdmin> {
           height: double.infinity,
           width: 250,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Expanded(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const LogoWidget(),
                     const SeparatorWidget(vertical: 20),
@@ -40,6 +39,7 @@ class _SidebarAdminState extends State<SidebarAdmin> {
                   ],
                 ),
               ),
+              const Divider(),
               const UserInformation(),
             ],
           ),
@@ -57,9 +57,5 @@ class _SidebarAdminState extends State<SidebarAdmin> {
         ),
       ],
     );
-  }
-
-  void selectReportSidebar(String route) {
-    // context.vRouter.to(route);
   }
 }

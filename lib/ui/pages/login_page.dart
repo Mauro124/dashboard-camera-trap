@@ -1,19 +1,12 @@
 import 'package:dashboard_camera_trap/core/router/routes_name.dart';
 import 'package:dashboard_camera_trap/domain/entities/user.dart';
 import 'package:dashboard_camera_trap/providers/general_providers.dart';
+import 'package:dashboard_camera_trap/providers/user/google_auth.dart';
 import 'package:dashboard_camera_trap/ui/shared/logo.dart';
 import 'package:dashboard_camera_trap/ui/shared/separator_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
-GoogleSignIn _googleSignIn = GoogleSignIn(
-  clientId: '320498965593-0gopqk3nj24spfr4q2g55idi01k307q2.apps.googleusercontent.com',
-  scopes: [
-    'email',
-    'https://www.googleapis.com/auth/drive.readonly',
-  ],
-);
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -25,7 +18,7 @@ class LoginPage extends ConsumerStatefulWidget {
 class _LoginPageState extends ConsumerState<LoginPage> {
   Future<void> _handleSignIn() async {
     try {
-      GoogleSignInAccount? account = await _googleSignIn.signIn();
+      GoogleSignInAccount? account = await ref.read(googleSignIn).signIn();
       User user = User(id: account!.id, name: account.displayName, email: account.email, photo: account.photoUrl);
       ref.read(userProvider.notifier).saveCurrentUser(user);
       Navigator.pushNamed(context, RoutesName.HOME_PAGE);

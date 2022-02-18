@@ -14,6 +14,11 @@ abstract class UserLocalDataSources {
   ///
   /// Throws a [ServerException] for all error code
   Future<User> getUser();
+
+  // Clear the user storage in localstorage.
+  ///
+  /// Throws a [ServerException] for all error code
+  Future<void> clearUser();
 }
 
 class UserLocalStorageDataSourcesImplementation implements UserLocalDataSources {
@@ -36,6 +41,17 @@ class UserLocalStorageDataSourcesImplementation implements UserLocalDataSources 
       String? userString = _sharedPreferences.getString('current_user');
       User user = User.fromJson(json.decode(userString!));
       return user;
+    } catch (ex) {
+      throw LocalStorageException(ex.toString());
+    }
+  }
+
+  @override
+  Future<void> clearUser() async {
+    try {
+      SharedPreferences _sharedPreferences = await storage;
+      _sharedPreferences.clear();
+      _sharedPreferences.remove('users');
     } catch (ex) {
       throw LocalStorageException(ex.toString());
     }
