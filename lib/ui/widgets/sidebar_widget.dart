@@ -7,14 +7,14 @@ import 'package:responsive_framework/responsive_framework.dart';
 
 import '../shared/separator_widget.dart';
 
-class SidebarAdmin extends StatefulWidget {
-  const SidebarAdmin({Key? key}) : super(key: key);
+class SidebarWidget extends StatefulWidget {
+  const SidebarWidget({Key? key}) : super(key: key);
 
   @override
-  _SidebarAdminState createState() => _SidebarAdminState();
+  _SidebarWidgetState createState() => _SidebarWidgetState();
 }
 
-class _SidebarAdminState extends State<SidebarAdmin> {
+class _SidebarWidgetState extends State<SidebarWidget> {
   @override
   Widget build(BuildContext context) {
     return _sidebar();
@@ -22,7 +22,10 @@ class _SidebarAdminState extends State<SidebarAdmin> {
 
   Widget _sidebar() => ResponsiveWrapper.of(context).isDesktop || ResponsiveWrapper.of(context).isTablet
       ? Container(
-          color: Colors.transparent,
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            border: Border(right: BorderSide(color: Colors.grey[100]!, width: 2)),
+          ),
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 24),
           height: double.infinity,
           width: 250,

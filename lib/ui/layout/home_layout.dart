@@ -4,7 +4,7 @@ import 'package:dashboard_camera_trap/providers/user/user_states.dart';
 import 'package:dashboard_camera_trap/ui/pages/reports_page.dart';
 import 'package:dashboard_camera_trap/ui/shared/separator_widget.dart';
 import 'package:dashboard_camera_trap/ui/widgets/page_size_not_allow.dart';
-import 'package:dashboard_camera_trap/ui/widgets/sidebar_admin.dart';
+import 'package:dashboard_camera_trap/ui/widgets/sidebar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -53,12 +53,9 @@ class _HomePageState extends ConsumerState<HomeLayout> {
 
   Widget _admin(BuildContext context, Constraints constraints) => Row(
         children: [
-          const SidebarAdmin(),
+          const SidebarWidget(),
           Expanded(
             child: Container(
-              decoration: BoxDecoration(
-                border: Border(left: BorderSide(color: Colors.grey[100]!, width: 2)),
-              ),
               padding: const EdgeInsets.all(30),
               margin: const EdgeInsets.all(30),
               child: const ReportsPage(),
