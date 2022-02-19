@@ -54,4 +54,14 @@ class ReportRepositoryImplementation implements ReportsRepository {
       return Left(ServerException(e.statusCode));
     }
   }
+
+  @override
+  Future<Either<Exception, List<Report>>> getReportsByValue(String value) async {
+    try {
+      List<Report> reports = await reportRemoteDataSources.getReportsByValue(value);
+      return Right(reports);
+    } on ServerException catch (e) {
+      return Left(ServerException(e.statusCode));
+    }
+  }
 }

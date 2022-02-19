@@ -4,6 +4,7 @@ import 'package:dashboard_camera_trap/domain/entities/report.dart';
 
 abstract class ReportRemoteDataSources {
   Future<List<Report>> getReports();
+  Future<List<Report>> getReportsByValue(String value);
   Future<Report> getReport(String id);
 
   /// Save a document of type report in firestore and return true if OK.
@@ -66,5 +67,17 @@ class ReportFirebaseDataSourcesImplementation implements ReportRemoteDataSources
   updateReport(Report report) {
     // TODO: implement updateReport
     throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Report>> getReportsByValue(String value) async {
+    try {
+      var collectionReference = _firebaseFirestore.collection("reports");
+      var querySnapshot = await collectionReference.get();
+      var documents = querySnapshot.docs;
+      return documents.map((doc) => Report.fromJson(doc.data())).toList();
+    } catch (ex) {
+      throw ServerException(500);
+    }
   }
 }

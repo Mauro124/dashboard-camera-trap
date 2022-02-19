@@ -86,7 +86,10 @@ class ReportPreview extends ConsumerWidget {
   Widget _buildDeleteButton(WidgetRef ref, String reportId) => ElevatedButton.icon(
         icon: const Icon(Icons.delete),
         label: const Text("Eliminar reporte"),
-        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.red)),
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(Colors.red),
+          padding: MaterialStateProperty.all(const EdgeInsets.all(20)),
+        ),
         onPressed: () => _deleteReport(ref, reportId),
       );
 

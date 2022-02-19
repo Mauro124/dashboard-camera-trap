@@ -6,6 +6,7 @@ import 'package:dashboard_camera_trap/domain/use_cases/reports/add_report.dart';
 import 'package:dashboard_camera_trap/domain/use_cases/reports/delete_report.dart';
 import 'package:dashboard_camera_trap/domain/use_cases/reports/get_report.dart';
 import 'package:dashboard_camera_trap/domain/use_cases/reports/get_reports.dart';
+import 'package:dashboard_camera_trap/domain/use_cases/reports/get_reports_by_value.dart';
 import 'package:dashboard_camera_trap/domain/use_cases/users/clear_current_user.dart';
 import 'package:dashboard_camera_trap/domain/use_cases/users/get_current_user.dart';
 import 'package:dashboard_camera_trap/domain/use_cases/users/save_current_user.dart';
@@ -29,6 +30,7 @@ Future<void> init() async {
   serviceLocator.registerFactory(
     () => ReportListNotifier(
       getReports: serviceLocator(),
+      getReportsByValue: serviceLocator(),
       addReport: serviceLocator(),
       deleteReport: serviceLocator(),
     ),
@@ -51,6 +53,9 @@ Future<void> init() async {
   );
   serviceLocator.registerLazySingleton(
     () => GetReports(reportsRepository: serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton(
+    () => GetReportsByValue(reportsRepository: serviceLocator()),
   );
   serviceLocator.registerLazySingleton(
     () => DeleteReport(reportsRepository: serviceLocator()),

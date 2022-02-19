@@ -39,26 +39,24 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     ));
   }
 
-  Center _buildLoginCircle(BuildContext context) {
-    return Center(
-      child: Container(
-        height: 300,
-        width: 300,
-        decoration:
-            const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(150)), boxShadow: [
-          BoxShadow(
-            color: Colors.white,
-            blurRadius: 120,
+  Widget _buildLoginCircle(BuildContext context) {
+    return Positioned(
+      left: 200,
+      top: 0,
+      bottom: 0,
+      child: Center(
+        child: Container(
+          width: 300,
+          color: Colors.white,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const LogoWidget(),
+              const SeparatorWidget(vertical: 30),
+              _buildGoogleSignIn(context),
+            ],
           ),
-        ]),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const LogoWidget(),
-            const SeparatorWidget(vertical: 30),
-            _buildGoogleSignIn(context),
-          ],
         ),
       ),
     );
@@ -66,8 +64,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   Image _buildBackgroundImage() {
     return Image.network(
-      "https://images.unsplash.com/photo-1438565434616-3ef039228b15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80",
+      "https://images.unsplash.com/photo-1634521991558-a1f4dbd641db?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
       fit: BoxFit.cover,
+      alignment: Alignment.centerLeft,
     );
   }
 
